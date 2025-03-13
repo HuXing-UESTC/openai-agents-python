@@ -1,7 +1,19 @@
 import logging
 import asyncio
+import argparse
+import os
+
 from weather_manager import WeatherSearch
 
+
+def define_options():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '--api_key', dest='api_key', required=True,
+        help='OpenAI API KEY'
+    )
+    options = parser.parse_args()
+    return options
 
 def setup_logger():
     logger = logging.getLogger()
@@ -13,6 +25,8 @@ def setup_logger():
     return logger
 
 async def main():
+    options = define_options()
+    os.environ['OPENAI_API_KEY'] = options.api_key
     query = input("请输入：")
     logger = setup_logger()
     weather_search = WeatherSearch(logger=logger)
