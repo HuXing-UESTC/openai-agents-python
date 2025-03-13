@@ -3,36 +3,36 @@ from agents import Agent, FunctionTool, RunContextWrapper, function_tool
 from typing_extensions import TypedDict
 
 INSTRUCTIONS = (
-    "你是一个擅长查询天气的助理，可以查询指定时间、指定地点的天气， 如果用户没有指明时间，那么默认是今天"
+    "You are an assistant who is good at checking the weather. You can check the weather at a specified time and location. If the user does not specify a time, it defaults to today"
 )
 
 class WeatherRequest(TypedDict):
     location: str
     date: str
 
-@function_tool(name_override="查询天气")
+@function_tool(name_override="fetch weather")
 async def fetch_weather(weather_request: WeatherRequest) -> str:
-    """查询某个时间某个地点的天气情况
+    """Check the weather conditions at a certain time and place
 
         Args:
-            location: 查询的地点、城市名
-            date: 查询的日期
+            location: Query location or city name
+            date: Date of inquiry
         """
 
     return "明天杭州的天气预报是晴天，气温约为22度，湿度为65%，风向为东南风。"
 
 @function_tool(name_override="上报天气")
 async def upload_weather(data: str) -> bool:
-    """将天气信息上报到表单
+    """Report weather information on the form
 
         Args:
-            data: 天气信息
+            data: weather info data
         """
 
     return True
 
 weather_search_agent = Agent(
-    name="天气助理",
+    name="Weather Assistant",
     instructions=INSTRUCTIONS,
     model="gpt-4o",
     tools=[fetch_weather, upload_weather],

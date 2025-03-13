@@ -3,27 +3,27 @@ from agents import Agent, FunctionTool, RunContextWrapper, function_tool
 from typing_extensions import TypedDict
 
 INSTRUCTIONS = (
-    "你是一个通知助理，你可以将指定的DING消息发送给用户"
+    "You are a notification assistant who can send specified DING messages to users"
 )
 
 class WeatherRequest(TypedDict):
     msg: str
     receiver: str
 
-@function_tool(name_override="发送DING消息")
+@function_tool(name_override="Send DING Message")
 async def send_ding_msg(weather_request: WeatherRequest) -> bool:
-    """发送指定的DING消息给指定用户
+    """Send the specified DING message to the designated user
 
         Args:
-            msg: DING消息的内容
-            receiver: 接收人
+            msg: The content of the DING message
+            receiver: Recipient's name
         """
 
     return True
 
 
 ding_send_agent = Agent(
-    name="DING消息通知助理",
+    name="DING Message Notification Assistant",
     instructions=INSTRUCTIONS,
     model="gpt-4o",
     tools=[send_ding_msg],
