@@ -24,20 +24,11 @@ async def fetch_weather(weather_request: WeatherRequest) -> str:
     data = {"data": "明天杭州的天气预报是晴天，气温约为22度，湿度为65%，风向为东南风。"}
     return json.dump(data)
 
-@function_tool(name_override="upload_weather")
-async def upload_weather(data: str) -> bool:
-    """Report weather information on the form
-
-        Args:
-            data: weather info data
-        """
-
-    return True
 
 weather_search_agent = Agent(
     name="Weather Assistant",
     instructions=INSTRUCTIONS,
     model="gpt-4o",
-    tools=[fetch_weather, upload_weather],
+    tools=[fetch_weather],
     model_settings=ModelSettings(tool_choice="required"),
 )
