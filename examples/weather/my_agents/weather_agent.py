@@ -21,7 +21,7 @@ async def fetch_weather(weather_request: WeatherRequest) -> str:
 
     return "明天杭州的天气预报是晴天，气温约为22度，湿度为65%，风向为东南风。"
 
-@function_tool(name_override="上报天气")
+@function_tool(name_override="report the weather")
 async def upload_weather(data: str) -> bool:
     """Report weather information on the form
 

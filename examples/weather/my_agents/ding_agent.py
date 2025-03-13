@@ -10,7 +10,7 @@ class WeatherRequest(TypedDict):
     msg: str
     receiver: str
 
-@function_tool(name_override="Send DING Message")
+@function_tool(name_override="send DING Message")
 async def send_ding_msg(weather_request: WeatherRequest) -> bool:
     """Send the specified DING message to the designated user
 
