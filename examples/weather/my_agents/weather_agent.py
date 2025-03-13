@@ -1,3 +1,5 @@
+import json
+
 from agents.model_settings import ModelSettings
 from agents import Agent, FunctionTool, RunContextWrapper, function_tool
 from typing_extensions import TypedDict
@@ -19,7 +21,8 @@ async def fetch_weather(weather_request: WeatherRequest) -> str:
             date: Date of inquiry
         """
 
-    return "明天杭州的天气预报是晴天，气温约为22度，湿度为65%，风向为东南风。"
+    data = {"data": "明天杭州的天气预报是晴天，气温约为22度，湿度为65%，风向为东南风。"}
+    return json.dump(data)
 
 @function_tool(name_override="upload_weather")
 async def upload_weather(data: str) -> bool:
