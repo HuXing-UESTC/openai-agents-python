@@ -12,6 +12,7 @@ class WeatherSearch:
 
     async def run(self, query: str) -> None:
         trace_id = gen_trace_id()
+        print(f"\n\n traceId = {trace_id}")
         with trace("Research trace", trace_id=trace_id):
             result = await Runner.run(my_main_agent, query)
             print(f"\n\nresult = {result}")
