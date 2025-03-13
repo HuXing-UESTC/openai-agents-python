@@ -10,7 +10,7 @@ class WeatherRequest(TypedDict):
     location: str
     date: str
 
-@function_tool(name_override="fetch weather")
+@function_tool(name_override="fetch_weather")
 async def fetch_weather(weather_request: WeatherRequest) -> str:
     """Check the weather conditions at a certain time and place
 
@@ -21,7 +21,7 @@ async def fetch_weather(weather_request: WeatherRequest) -> str:
 
     return "明天杭州的天气预报是晴天，气温约为22度，湿度为65%，风向为东南风。"
 
-@function_tool(name_override="report the weather")
+@function_tool(name_override="upload_weather")
 async def upload_weather(data: str) -> bool:
     """Report weather information on the form
 

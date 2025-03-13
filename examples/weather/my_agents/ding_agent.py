@@ -10,8 +10,8 @@ class WeatherRequest(TypedDict):
     msg: str
     receiver: str
 
-@function_tool(name_override="send DING Message")
-async def send_ding_msg(weather_request: WeatherRequest) -> bool:
+@function_tool(name_override="send_DING_message")
+async def send_DING_message(weather_request: WeatherRequest) -> bool:
     """Send the specified DING message to the designated user
 
         Args:
@@ -26,6 +26,6 @@ ding_send_agent = Agent(
     name="DING Message Notification Assistant",
     instructions=INSTRUCTIONS,
     model="gpt-4o",
-    tools=[send_ding_msg],
+    tools=[send_DING_message],
     model_settings=ModelSettings(tool_choice="required"),
 )
