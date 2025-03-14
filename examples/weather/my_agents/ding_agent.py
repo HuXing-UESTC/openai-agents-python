@@ -27,5 +27,5 @@ ding_send_agent = Agent(
     instructions=INSTRUCTIONS,
     model="gpt-4o",
     tools=[send_DING_message],
-    model_settings=ModelSettings(tool_choice="required"),
+    model_settings=ModelSettings(tool_choice="auto"),
 )
