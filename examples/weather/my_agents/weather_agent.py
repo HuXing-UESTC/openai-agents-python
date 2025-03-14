@@ -17,8 +17,7 @@ async def fetch_weather(weather_request: WeatherRequest) -> str:
     """Check the weather conditions at a certain time and place
 
         Args:
-            location: Query location or city name
-            date: Date of inquiry
+            weather_request: request for fetching weather
         """
 
     data = {"data": "明天杭州的天气预报是晴天，气温约为22度，湿度为65%，风向为东南风。"}
@@ -30,5 +29,5 @@ weather_search_agent = Agent(
     instructions=INSTRUCTIONS,
     model="gpt-4o",
     tools=[fetch_weather],
-    model_settings=ModelSettings(tool_choice="required"),
+    model_settings=ModelSettings(tool_choice="auto"),
 )
